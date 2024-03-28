@@ -18,6 +18,10 @@ async def process_help_command(message: Message):
     await message.answer('How can I help you?')
 
 
+async def send_sticker(message: Message):
+    await message.reply_sticker(message.sticker.set_name)
+
+
 async def send_photo(message: Message):
     await message.reply_photo(message.photo[0].file_id)
 
@@ -28,6 +32,7 @@ async def send_echo(message: Message):
 
 dp.message.register(process_start_command, Command(commands=['start']))
 dp.message.register(process_help_command, Command(commands=['help']))
+dp.message.register(send_sticker, F.sticker)
 dp.message.register(send_photo, F.photo)
 dp.message.register(send_echo)
 
