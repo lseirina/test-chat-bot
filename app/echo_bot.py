@@ -10,18 +10,28 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
-@dp.message(Command(commands=['start']))
+@dp.message(Command(commands=['start']))  # Filter to catch '/start'
 async def process_start_command(message: Message):
+    # React to the message '/start'.
     await message.answer('Hello')
 
 
-@dp.message(Command(commands=['help']))
+@dp.message(Command(commands=['help']))  # Filter to catch '/help'
 async def process_help_command(message: Message):
+    # React to the message '/help'.
     await message.answer('How can I help you?')
+
+
+@dp.message(F.voice)  # Filter to catch update with voice.
+async def send_voice(message: Message):
+    # Function catches the update voice type and send json file about it.
+    print(message)
+    await message.reply('You send voice.')
 
 
 @dp.message()
 async def send_echo(message: Message):
+    # Send the copy of your answer.
     try:
         await message.send_copy(chat_id=message.chat.id)
     except TypeError:
