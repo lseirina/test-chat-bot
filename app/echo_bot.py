@@ -25,7 +25,7 @@ async def process_help_command(message: Message):
 @dp.message(F.voice)  # Filter to catch update with voice.
 async def send_voice(message: Message):
     # Function catches the update voice type and send json file about it.
-    print(message)
+    print(message.model_dump_json(indent=4, exclude_none=True))  #  for readable answer
     await message.reply('You send voice.')
 
 
