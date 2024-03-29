@@ -10,31 +10,22 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
+@dp.message(Command(commands=['start']))
 async def process_start_command(message: Message):
     await message.answer('Hello')
 
 
+@dp.message(Command(commands=['help']))
 async def process_help_command(message: Message):
     await message.answer('How can I help you?')
 
 
-async def send_sticker(message: Message):
-    await message.reply_sticker(message.sticker.set_name)
-
-
-async def send_photo(message: Message):
-    await message.reply_photo(message.photo[0].file_id)
-
-
+@dp.message()
 async def send_echo(message: Message):
-    await message.reply(text=message.text)
-
-
-dp.message.register(process_start_command, Command(commands=['start']))
-dp.message.register(process_help_command, Command(commands=['help']))
-dp.message.register(send_sticker, F.sticker)
-dp.message.register(send_photo, F.photo)
-dp.message.register(send_echo)
+    try:
+        await message.send_copy(chat_id=message.chat.id)
+    except TypeError:
+        await message.reply(text="This update is not supported by method 'send_copy'")
 
 
 if __name__ == "__main__":
