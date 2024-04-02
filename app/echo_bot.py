@@ -13,6 +13,7 @@ dp = Dispatcher()
 @dp.message(Command(commands=['start']))  # Filter to catch '/start'
 async def process_start_command(message: Message):
     # React to the message '/start'.
+    print(message.from_user.id)
     await message.answer('Hello')
 
 
