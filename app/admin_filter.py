@@ -9,9 +9,9 @@ BOT_TOKEN = '6883498485:AAGtOZFurG3T-H2oDNwhQcUqeUzlMfqcJHE'
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-admin_ids = [2071954957
+admin_ids = [2071954957]
 
-             ]
+
 class IsAdmin(BaseFilter):
     def __init__(self, admin_ids: list[int]) -> None:
         self.admin_ids = admin_ids
