@@ -1,5 +1,7 @@
 import logging
 
+logging.basicConfig(level=logging.CRITICAL)
+
 logging.debug("This for debug.")
 logging.info("This for info.")
 logging.warning("This is for warning")
