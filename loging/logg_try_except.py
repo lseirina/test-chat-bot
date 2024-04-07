@@ -8,4 +8,4 @@ try:
     print(2 / 0)
 except ZeroDivisionError:
     # logger.error('There is exception here.', exc_info=True) # the first option.
-    logger.exception('There is an exception here.') # The second option.
+    logger.exception('There is an exception here.')  # The second option.
