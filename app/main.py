@@ -17,25 +17,12 @@ import os
 # print(bot_token)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-import os
+from config_data.config import load_config
 from environs import Env
 
-env = Env()
+config = load_config('/app/.env.txt')
 
-env.read_env('/app/.env.txt')
 
-bot_token = env('BOT_TOKEN')
+bot_token = config.tg_bot.token
 
 print(bot_token)
